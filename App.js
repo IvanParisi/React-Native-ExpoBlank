@@ -11,6 +11,7 @@ export default function App()
 
   const options =["USD","ARS","EUR","GBP","BRL","CLP","UYU"];
 
+  
   const [convert, setCoinPrice] = React.useState(null)
   
   const [input, setInputN] = React.useState();
@@ -27,9 +28,7 @@ export default function App()
   }
 
 
-  React.useEffect(() =>{
-    setConversTotal(conversTotal)
-  })
+ 
 
   return (
     <View style={styles.container}>
@@ -44,7 +43,7 @@ export default function App()
         defaultValue="0"
          placeholder="Ingresa el monto"
          value={input}
-         onChangeText={text => setInputN(text)}/>
+         onChangeText={text => setInputN(text)} keyboardType="number-pad"/>
 
         <Picker style={styles.inputCoin}
         selectedValue={inputCP}
@@ -58,7 +57,7 @@ export default function App()
       </View>
 
       <View style={styles.wrapperExch}>
-        <h1>Conversion a:</h1>
+        <Text style={styles.textConversTotal}>Conversion a:</Text>
       </View>
 
       <View style={styles.wrapperExch}>
@@ -78,16 +77,15 @@ export default function App()
 
       <View style={styles.wrapperExch}> 
       {convert && (
-      <Text style={styles.text}>Total: {(input * convert.conversion_rate).toFixed(2)}</Text>
+      <Text style={styles.textTotal}>Total: {(input * convert.conversion_rate).toFixed(2)}</Text>
       )}
       </View>
 
-      <View style={styles.wrapperExch}> 
-      <Text style={styles.textConversTotal}>Uso EXCHANGE un total de: {conversTotal}</Text>
-      </View>
+   
     </View>
   );
 }
+
 
 const styles = StyleSheet.create(
   {
@@ -95,13 +93,10 @@ const styles = StyleSheet.create(
     {
       flex: 1,
       backgroundColor: 'gray',
-      width: '100vw',
-      height: '100vw',
-    
     },
     logo: {
-      width: '430px',
-      height: '430px',
+      width: 430,
+      height: 430,
     },
     wrapper:
     {
@@ -117,7 +112,7 @@ const styles = StyleSheet.create(
       flexDirection:'row',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: '10px',
+      marginTop: 10,
     },
     inputNumber:
     {
@@ -127,24 +122,19 @@ const styles = StyleSheet.create(
     },
     inputCoin:
     {
-      marginLeft: '10px',
-      paddingRight: '10px',
-      borderRadius: 5,
-      textAlign: 'center',
-      color: 'white',
-      backgroundColor: 'black',
+      marginLeft: 50,
+      width: 100,
+      height: 50,
+      color: 'black',
+      borderColor: 'black',
 
     },
     textTotal:
     {
-      fontSize: 50,
+      fontSize: 30,
       fontWeight: 'bold'
     },
-    textConversTotal:
-    {
-      fontSize: 20,
-      fontWeight: 'bold'
-    }
+   
   
 
 }
